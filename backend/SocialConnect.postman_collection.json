@@ -1,0 +1,15 @@
+{
+  "info": { "name": "SocialConnect API", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000/api" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    { "name": "Health", "request": { "method": "GET", "url": "{{baseUrl}}/health" } },
+    { "name": "Register", "request": { "method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode":"raw", "raw":"{\n  \"fullName\": \"Sarah Jenkins\",\n  \"email\": \"sarah@example.com\",\n  \"phone\": \"0412345678\",\n  \"role\": \"user\",\n  \"password\": \"Password123!\"\n}" }, "url": "{{baseUrl}}/auth/register" } },
+    { "name": "Login", "request": { "method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode":"raw", "raw":"{\n  \"email\": \"sarah@example.com\",\n  \"password\": \"Password123!\"\n}" }, "url": "{{baseUrl}}/auth/login" } },
+    { "name": "List Approved Campaigns", "request": { "method": "GET", "url": "{{baseUrl}}/campaigns" } },
+    { "name": "Create Campaign", "request": { "method": "POST", "header": [{"key":"Authorization","value":"Bearer {{token}}"},{"key":"Content-Type","value":"application/json"}], "body": { "mode":"raw", "raw":"{\n  \"title\": \"Clean Up Local Park\",\n  \"category\": \"Littering\",\n  \"target\": 50,\n  \"description\": \"Community cleanup initiative for the local park.\"\n}" }, "url": "{{baseUrl}}/campaigns" } },
+    { "name": "Create Issue Report", "request": { "method": "POST", "header": [{"key":"Authorization","value":"Bearer {{token}}"},{"key":"Content-Type","value":"application/json"}], "body": { "mode":"raw", "raw":"{\n  \"title\": \"Illegal dumping near reserve\",\n  \"category\": \"Illegal Dumping\",\n  \"description\": \"Construction waste has been dumped beside the reserve fence.\"\n}" }, "url": "{{baseUrl}}/reports" } }
+  ]
+}

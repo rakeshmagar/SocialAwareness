@@ -1,0 +1,11 @@
+const router = require('express').Router();
+const asyncHandler = require('../utils/asyncHandler');
+const c = require('../controllers/campaignController');
+const { authenticate, authorize } = require('../middleware/auth');
+router.get('/', asyncHandler(c.listApproved));
+router.get('/mine', authenticate, asyncHandler(c.listMine));
+router.get('/pending', authenticate, authorize('admin'), asyncHandler(c.listPending));
+router.post('/', authenticate, asyncHandler(c.create));
+router.post('/:id/join', authenticate, asyncHandler(c.join));
+router.patch('/:id/review', authenticate, authorize('admin'), asyncHandler(c.review));
+module.exports = router;
